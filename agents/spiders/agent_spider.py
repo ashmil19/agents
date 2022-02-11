@@ -13,3 +13,10 @@ class AgentSpiderSpider(scrapy.Spider):
         
         for link in profile_link:
             yield response.follow(link, callback=self.parse_details)
+
+    def parse_details(self, response):
+        
+        name = response.xpath("//h1[@class='body-title']//text()").extract_first()
+        job_title = response.xpath("//*[@class='text-left medium-text mobile-text-center']/span[@class='big-text']/text()").extract_first()
+        img_url = response.xpath("//*[@class='agent-photo']/@src").extract_first()
+        address = ' '.join(response.xpath("//*[@class='text-left medium-text mobile-text-center']/text()").extract()).strip()
