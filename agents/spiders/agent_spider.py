@@ -2,7 +2,10 @@ import scrapy
 from ..items import AgentsItem
 
 class AgentSpiderSpider(scrapy.Spider):
+    
     name = 'agents'
+    page_number = 2
+    
     start_urls = [
         'http://https://www.bhhsamb.com/agents/'
         ]
@@ -55,3 +58,10 @@ class AgentSpiderSpider(scrapy.Spider):
         items['description'] = description
         
         yield items
+        
+        
+        next_page = 'https://www.bhhsamb.com/agents?page='+str(AgentSpiderSpider.page_number)+''
+        
+        if AgentSpiderSpider.page_number < 44:
+            AgentSpiderSpider.page_number += 1
+            yield response.follow(next_page, callback=self.parse)
