@@ -1,5 +1,5 @@
 import scrapy
-
+from ..items import AgentsItem
 
 class AgentSpiderSpider(scrapy.Spider):
     name = 'agents'
@@ -15,6 +15,8 @@ class AgentSpiderSpider(scrapy.Spider):
             yield response.follow(link, callback=self.parse_details)
 
     def parse_details(self, response):
+        
+        items = AgentsItem()
         
         name = response.xpath("//h1[@class='body-title']//text()").extract_first()
         job_title = response.xpath("//*[@class='text-left medium-text mobile-text-center']/span[@class='big-text']/text()").extract_first()
