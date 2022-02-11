@@ -42,3 +42,16 @@ class AgentSpiderSpider(scrapy.Spider):
         offices = response.xpath("//div[@id='team_offices']/a/text()").extract()
         languages = response.xpath("//ul[@class='first']/li/text()").extract()
         description =' '.join(response.xpath("//*[@class='col-sm-24']/p/text()").extract())
+        
+        
+        items['name'] = name
+        items['job_title'] = job_title
+        items['img_url'] = img_url
+        items['address'] = address
+        items['contact_details'] = contact_details
+        items['social_accounts'] = social_accounts
+        items['offices'] = offices
+        items['languages'] = languages
+        items['description'] = description
+        
+        yield items
