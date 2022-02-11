@@ -36,3 +36,7 @@ class AgentSpiderSpider(scrapy.Spider):
             'pinterest' : response.xpath("//div[@class='agent-social-icons social']/a[@class='pi']/@href").extract_first(),
             'instagram' : response.xpath("//div[@class='agent-social-icons social']/a[@class='ig']/@href").extract_first()
         }
+        
+        offices = response.xpath("//div[@id='team_offices']/a/text()").extract()
+        languages = response.xpath("//ul[@class='first']/li/text()").extract()
+        description =' '.join(response.xpath("//*[@class='col-sm-24']/p/text()").extract())
