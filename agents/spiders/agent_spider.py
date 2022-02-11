@@ -7,7 +7,7 @@ class AgentSpiderSpider(scrapy.Spider):
     page_number = 2
     
     start_urls = [
-        'http://https://www.bhhsamb.com/agents/'
+        'http://www.bhhsamb.com/agents/'
         ]
 
     def parse(self, response):
@@ -60,7 +60,7 @@ class AgentSpiderSpider(scrapy.Spider):
         yield items
         
         
-        next_page = 'https://www.bhhsamb.com/agents?page='+str(AgentSpiderSpider.page_number)+''
+        next_page = 'http://www.bhhsamb.com/agents?page='+str(AgentSpiderSpider.page_number)+''
         
         if AgentSpiderSpider.page_number < 44:
             AgentSpiderSpider.page_number += 1
