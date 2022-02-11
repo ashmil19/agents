@@ -20,3 +20,19 @@ class AgentSpiderSpider(scrapy.Spider):
         job_title = response.xpath("//*[@class='text-left medium-text mobile-text-center']/span[@class='big-text']/text()").extract_first()
         img_url = response.xpath("//*[@class='agent-photo']/@src").extract_first()
         address = ' '.join(response.xpath("//*[@class='text-left medium-text mobile-text-center']/text()").extract()).strip()
+        
+        contact_details = {
+            'Office' : response.xpath("//*[@data-type='Office']/text()").extract_first(),
+            'Cell' : response.xpath("//*[@data-type='Agent']/text()").extract_first(),
+            'email' : response.xpath("//*[@class='agent_email']/text()").extract_first()
+        }
+        
+        social_accounts = {
+            
+            'facebook' : response.xpath("//div[@class='agent-social-icons social']/a[@class='fb']/@href").extract_first(),
+            'twitter' : response.xpath("//div[@class='agent-social-icons social']/a[@class='tw']/@href").extract_first(),
+            'linkedin' : response.xpath("//div[@class='agent-social-icons social']/a[@class='li']/@href").extract_first(),
+            'youtube' : response.xpath("//div[@class='agent-social-icons social']/a[@class='yt']/@href").extract_first(),
+            'pinterest' : response.xpath("//div[@class='agent-social-icons social']/a[@class='pi']/@href").extract_first(),
+            'instagram' : response.xpath("//div[@class='agent-social-icons social']/a[@class='ig']/@href").extract_first()
+        }
